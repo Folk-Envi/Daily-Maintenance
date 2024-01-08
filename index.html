@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+    <style>
+        body, h1, h2, h3, h4, h5, h6  {
+          font-family: Kanit, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <center><h3>จำนวนรถที่เข้ารับการบำรุงรักษาประจำวัน</h3></center>
+
+    <div class="container">
+        <form method="post" accept-charset="UTF-8" autocomplete="off" name="บันทึกจำนวนรถที่เข้าบำรุงรักษา">
+            <label for="หน่วยงาน">หน่วยงาน</label>
+            <select class="หน่วยงาน" type="text" name="หน่วยงาน" required autocomplete="off">
+                <option value="ซท. 1">ซท. 1</option>
+                <option value="ซท. 2">ซท. 2</option>
+                <option value="ซท. 3">ซท. 3</option>
+            </select>
+            <label for="จำนวน (คัน)">จำนวน (คัน)</label>
+            <input class="input" type="text" name="จำนวน (คัน)" required autocomplete="off">
+            
+            <button class="button" type="submit" >บันทึกผล</button>
+            <p id="demo"></p>
+        </form>
+    </div>
+    </main>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzuNZH-tyweRQxpqh3wtndqYiei9aqv66bF21iGoqnAAy236mQu5fMaMEogGk4EU5_D6Q/exec'
+        const form = document.forms['บันทึกจำนวนรถที่เข้าบำรุงรักษา']
+        
+        form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => document.getElementById("demo").innerHTML = "<div class='alert alert-primary' role='alert'><b>ระบบบันทึกข้อมูลเรียบร้อยแล้ว !</b></div>",บันทึกจำนวนรถที่เข้าบำรุงรักษา.reset())
+                .catch(error => console.error('Error!', error.message))
+            })
+    </script>
+ 
+              
+ </body>
+ </html>
+
+
